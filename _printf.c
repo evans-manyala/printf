@@ -11,7 +11,6 @@ int _printf(const char *format, ...)
 	int state = 0; /* Start with regular printing mode */
 	int i = 0;
 	int count = 0; /* to return number of the arguments passed */
-	char *str;
 
 	va_list lst;
 
