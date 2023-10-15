@@ -3,51 +3,48 @@
 #include "main.h"
 
 
+
+
 int _printf(const char *format, ...)
 {
-	/* state 0 = regular, state 1 = escape */
+FormatSpecifier specifiers[] = {{ 's', handle_s },
+{'c', handle_c}, {'%', handle_perc}};
+
 	if (format == NULL)
 		return (-1); /* Failure if format is NULL */
-	int state = 0; /* Start with regular printing mode */
-	int i = 0;
-	int count = 0; /* to return number of the arguments passed */
-
+	int state = 0, count = 0 ; /* Start with regular printing mode */
 	va_list lst;
 
 	va_start(lst, format);
-
 	while (*format)
 	{
-		if (state == 0)
+		if (state == 0)  /* state 0 = regular, state 1 = escape */
 		{
 			if (*format == '%')
+			{
 				state = 1;
+			}
 			else
 			{
-				_putchar(*format);
-				count++;
+				count += _putchar(*format);
 			}
 		}
 		else if (state == 1)
 		{
-			switch(*format)
+			char specifier = *format;
+
+			for (size_t i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
 			{
-				case 'c':
-				_putchar(va_arg(lst, int));
-				count++;
-				break;
-				case 's':
-				handle_s(lst, &count);	
-				break;
-				case '%':
-				_putchar('%');
-				count++;
-				break;
+				if (specifiers[i].specifier == specifier)
+				{
+					specifiers[i].handler(lst, &count);
+					break;
+				}
 			}
 			state = 0;
 		}
-		*format++;
+		format++;
 	}
 	va_end(lst);
 	return (count);
-}				
+}
