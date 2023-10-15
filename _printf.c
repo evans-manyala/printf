@@ -36,9 +36,12 @@ int _printf(const char *format, ...)
 				_putchar(va_arg(lst, int));
 				count++;
 				break;
-
 				case 's':
 				handle_s(lst, &count);	
+				break;
+				case '%':
+				_putchar('%');
+				count++;
 				break;
 			}
 			state = 0;
