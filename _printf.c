@@ -7,11 +7,11 @@
 int _printf(const char * const format, ...)
 {
 	convert_string m[] = {
-		{"%s", print_string}, {"%c", printf_char},
+		{"%s", print_string}, {"%c", print_char},
 	};
 
 	va_list args;
-	int x = 0, y, len = 0;
+	int x, len = 0, y;
 
 	va_start(args, format);
 	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
@@ -23,13 +23,13 @@ Here:
 		y = 13;
 		while (y >= 0)
 		{
-			if (m[j].id[0] == format[x] && m[y].id[1] == format[x + 1])
+			if (m[y].id[0] == format[x] && m[y].id[1] == format[x + 1])
 			{
-				len += m[j].f(args);
-				x = i + 2;
+				len += m[y].f(args);
+				x += 2;
 				goto Here;
 			}
-			j--;
+			y--;
 		}
 		_putchar(format[x]);
 		len++;
