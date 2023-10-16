@@ -1,10 +1,10 @@
 #include "main.h"
-
 /**
  * _printf - is a function that selects the correct function to print.
  * @format: identifier to look for.
  * Return: the length of the string.
  */
+
 int _printf(const char *format, ...)
 {
 	FormatSpecifier specifiers[] = {
@@ -13,33 +13,36 @@ int _printf(const char *format, ...)
 		{'%', handle_perc}
 	};
 
-	va_list args;
-	int x, len = 0, y;
+	int count = 0;
+	size_t i;
+	va_list lst;
 
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL || format[1] == '\0')
 		return (-1);
-
-	while (format[x] != '\0')
+	va_start(lst, format);
+	while (*format)
 	{
-		y = 2;
-		while (y >= 0)
+		if (*format != '%')  /* Check the Escape sequence */
+			count += _putchar(*format);
+		else
 		{
-			if (specifiers[y].specifier == format[x])
+			format++; /* Check what is after % */
+			if (*format != '\0')
 			{
-				len += specifiers[y].handler(args, &len);
-				x += 1;
-				goto Here;
+				char specifier = *format;
+
+				for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
+				{
+					if (specifiers[i].specifier == specifier)
+					{
+						specifiers[i].handler(lst, &count);
+						break;
+					}
+				}
 			}
-			y--;
 		}
-		_putchar(format[x]);
-		len++;
-		x++;
+		format++;
 	}
-
-Here:
-	va_end(args);
-	return (len);
+	va_end(lst);
+	return (count);
 }
-
