@@ -16,7 +16,7 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 	size_t i;
 	va_list lst;
 
-	if (format == NULL || format[1] == '\0')
+	if (format == NULL)
 		return (-1);
 	va_start(lst, format);
 	while (*format)
@@ -26,16 +26,17 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 		else
 		{
 			format++; /* Check what is after % */
-			if (*format == '\0')
-				break;
-			char specifier = *format;
-
-			for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
+			if (*format != '\0')
 			{
-				if (specifiers[i].specifier == specifier)
+				char specifier = *format;
+
+				for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
 				{
-					specifiers[i].handler(lst, &count);
-					break;
+					if (specifiers[i].specifier == specifier)
+					{
+						specifiers[i].handler(lst, &count);
+						break;
+					}
 				}
 			}
 		}
