@@ -17,7 +17,7 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 	size_t i;
 	va_list lst;
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
 	va_start(lst, format);
 	while (*format)
