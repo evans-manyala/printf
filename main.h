@@ -5,22 +5,24 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <limits.h>
+#include <string.h>
 #include <unistd.h>
 
 /**
- * struct format - match the conversion specifiers of printf
- * @id: char pointer of the specifier.
- * @f: pointer to function for the conversion specifier.
+ * struct - match the conversion specifiers of printf
  */
 
-typedef struct format
-{
-	char *id;
-	int (*f)();
-} convert_string;
+typedef struct {
+	char specifier;
+	int (*handler)(va_list, int *);
+} FormatSpecifier;
 
-int printf_string(va_list val);
-int _putchar(char c);
+void specifiers_list(void);
 int _printf(const char *format, ...);
+int _putchar(char c);
+int handle_s(va_list lst, int *count);
+int handle_c(va_list lst, int *count);
+int handle_perc(va_list lst, int *count);
 
 #endif
+
