@@ -1,7 +1,4 @@
-#include <stdarg.h>
-#include <stddef.h>
 #include "main.h"
-
 /**
  * handle_s - This function will handle string specifier
  * @lst: List of arguments
