@@ -31,6 +31,7 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 		}
 		else if (state == 1)
 		{
+			format++;
 			char specifier = *format;
 
 			for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
