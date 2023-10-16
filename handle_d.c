@@ -29,7 +29,7 @@ int handle_d(va_list lst, int *count)
 
 		while (number > 0)
 		{
-			reversed = (reversed * 10) + number % 10;
+			reversed = reversed * 10 + number % 10;
 			number /= 10;
 		}
 
