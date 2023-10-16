@@ -1,6 +1,12 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
+#include <string.h>
 
 /**
  * struct will_handle - structure for handler
@@ -22,3 +28,4 @@ int handle_c(va_list lst, int *count);
 int handle_perc(va_list lst, int *count);
 int handle_d(va_list lst, int *count);
 #endif
+
