@@ -11,7 +11,7 @@
 
 int handle_perc(va_list lst, int *count)
 {
-	(void)lst; /* Unused parameter (avoid compiler warnings) */
+	/*(void)lst;  Unused parameter (avoid compiler warnings) */
 
 	_putchar('%'); /* Print '%' and increment the character count*/
 	(*count)++;
