@@ -24,7 +24,7 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 	{
 		if (state == 0)  /* state 0 = regular, state 1 = escape */
 		{
-			if (format == '%')
+			if (*format == '%')
 				state = 1;
 			else
 				count += _putchar(*format);
