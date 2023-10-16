@@ -13,10 +13,11 @@ int handle_s(va_list lst, int *count)
 	if (str == NULL)
 		return (-1);
 
-	while (*str)
+	while (*str != '\0') /*Added this line != '\0'*/
+
 	{
 		_putchar(*str);
-		(*count)++; /*Increment the character count*/
+		(*count)++;
 		str++;
 	}
 	return (1);
