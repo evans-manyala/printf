@@ -15,10 +15,10 @@
  * @handler: second member
  */
 
-typedef struct FormatSpecifier
+typedef struct will_handle
 {
 	char specifier;
-	void (*handler)(va_list, int *);
+	int (*handler)(va_list, int *);
 } FormatSpecifier;
 
 int _printf(const char *format, ...);
