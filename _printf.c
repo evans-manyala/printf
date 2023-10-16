@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdarg.h>
 #include "main.h"
 /**
  * _printf - is a function that selects the correct function to print.
@@ -9,8 +7,11 @@
 
 int _printf(const char *format, ...)
 {
-FormatSpecifier specifiers[] = {{ 's', handle_s },
-{'c', handle_c}, {'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
+	FormatSpecifier specifiers[] = {
+		{'s', handle_s},
+		{'c', handle_c},
+		{'%', handle_perc}
+	};
 
 	int count = 0;
 	size_t i;
