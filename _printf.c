@@ -13,7 +13,6 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 {'c', handle_c}, {'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
 
 	int count = 0;
-	int state = 0;
 	size_t i;
 	va_list lst;
 
@@ -22,16 +21,13 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 	va_start(lst, format);
 	while (*format)
 	{
-		if (state == 0)  /* state 0 = regular, state 1 = escape */
+		if (*format != '%')  /* Check the Escape sequence */
+			count += _putchar(*format);
+		else
 		{
-			if (*format == '%')
-				state = 1;
-			else
-				count += _putchar(*format);
-		}
-		else if (state == 1)
-		{
-			format++;
+			format++; /* Check what is after % */
+			if (*format == '\0')
+				break;
 			char specifier = *format;
 
 			for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
@@ -42,7 +38,6 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 					break;
 				}
 			}
-			state = 0;
 		}
 		format++;
 	}
