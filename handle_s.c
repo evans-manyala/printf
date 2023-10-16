@@ -18,8 +18,9 @@ int handle_s(va_list lst, int *count)
 
 	while (*str)
 	{
-		_putchar(*str++);
+		_putchar(*str);
 		(*count)++; /*Increment the character count*/
+		str++;
 	}
 	return (1);
 }
