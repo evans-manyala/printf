@@ -20,7 +20,6 @@ typedef struct will_handle
 	int (*handler)(va_list, int *);
 } FormatSpecifier;
 
-void specifiers_list(void);
 int _printf(const char *format, ...);
 int _putchar(char c);
 int handle_s(va_list lst, int *count);
