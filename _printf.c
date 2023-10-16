@@ -4,37 +4,45 @@
  * @format: identifier to look for.
  * Return: the length of the string.
  */
+
 int _printf(const char *format, ...)
 {
-	convert_string m[] = {
-		{"%s", print_string}, {"%c", print_char},
-	};
+FormatSpecifier specifiers[] = {{ 's', handle_s },
+{'c', handle_c}, {'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
 
-	va_list args;
-	int x, len = 0, y;
+	int count = 0;
+	int state = 0;
+	size_t i;
+	va_list lst;
 
-	va_start(args, format);
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+	if (format == NULL)
 		return (-1);
-
-Here:
-	while (format[x] != '\0')
+	va_start(lst, format);
+	while (*format)
 	{
-		y = 13;
-		while (y >= 0)
+		if (state == 0)  /* state 0 = regular, state 1 = escape */
 		{
-			if (m[y].id[0] == format[x] && m[y].id[1] == format[x + 1])
-			{
-				len += m[y].f(args);
-				x += 2;
-				goto Here;
-			}
-			y--;
+			if (*format == '%')
+				state = 1;
+			else
+				count += _putchar(*format);
 		}
-		_putchar(format[x]);
-		len++;
-		x++;
+		else if (state == 1)
+		{
+			char specifier = *format;
+
+			for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
+			{
+				if (specifiers[i].specifier == specifier)
+				{
+					specifiers[i].handler(lst, &count);
+					break;
+				}
+			}
+			state = 0;
+		}
+		format++;
 	}
-	va_end(args);
-	return (len);
+	va_end(lst);
+	return (count);
 }
