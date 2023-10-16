@@ -8,17 +8,16 @@
 
 int handle_s(va_list lst, int *count)
 {
-	char *str = va_arg(lst, char *);
+        char *str = va_arg(lst, char *);
 
-	if (str == NULL)
-		return (-1);
+        if (str == NULL)
+                return (-1);
 
-	while (*str != '\0') /*Added this line != '\0'*/
-
-	{
-		_putchar(*str);
-		(*count)++;
-		str++;
-	}
-	return (1);
+        while (*str)
+        {
+                _putchar(*str);
+                (*count)++; /*Increment the character count*/
+                str++;
+        }
+        return (1);
 }
