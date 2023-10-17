@@ -11,6 +11,9 @@ int handle_c(va_list lst, int *count)
 {
 	char c = va_arg(lst, int);
 
+	if (c == NULL)
+		return (-1);
+
 	/* Line to be deleted ===>*count += _putchar(c);*/
 
 	_putchar(c);
