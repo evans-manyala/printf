@@ -6,7 +6,7 @@
  *
  * Return: 1 if successful
  */
-int handle_c(va_list lst)
+int handle_c(va_list lst, int *count)
 {
 	char c = va_arg(lst, int);
 
