@@ -11,5 +11,6 @@ int handle_c(va_list lst, int *count)
 	char c = va_arg(lst, int);
 
 	_putchar(c);
+	(*count)++;
 	return (1);
 }
