@@ -4,22 +4,26 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
+#include <string.h>
 
 /**
- * struct will_handle - print data
- * @c: character.
- * @ptr: function pointer.
+ * struct will_handle - structure for handler
+ * @specifier: first member
+ * @handler: second member
  */
+
 typedef struct will_handle
 {
-	char *c;
-	int (*ptr)(va_list lst);
+	char specifier;
+	int (*handler)(va_list, int *);
 } FormatSpecifier;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
-int handle_c(va_list lst);
-int handle_s(va_list lst);
-
-#endif /* MAIN_H */
-
+int handle_s(va_list lst, int *count);
+int handle_c(va_list lst, int *count);
+int handle_perc(va_list lst, int *count);
+int handle_d(va_list lst, int *count);
+#endif
