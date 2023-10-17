@@ -27,7 +27,7 @@ int handle_s(va_list lst, int *count);
 int handle_c(va_list lst, int *count);
 int handle_perc(va_list lst, int *count);
 int handle_d(va_list lst, int *count);
-int handle_bin(va_list lst, int *count)
+int handle_bin(va_list lst, int *count);
 
 #endif
 
