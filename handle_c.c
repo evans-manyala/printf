@@ -1,25 +1,15 @@
 #include "main.h"
 
 /**
- * handle_c - This function will handle char specifier
- * @lst: List of arguments
- * @count: Count value of the number of characters
- * Return: Success value 1
+ * handle_c - print char
+ * @lst: argument
+ *
+ * Return: 1 if successful
  */
-
-int handle_c(va_list lst, int *count)
+int print_char(va_list lst)
 {
-	char c = va_arg(lst, int);
+        char c = va_arg(lst, int);
+        _putchar(c);
 
-	if (c == '\0')
-	{
-		c = ' ';
-	}
-
-	/* Line to be deleted ===>*count += _putchar(c);*/
-
-	_putchar(c);
-	(*count)++;
-
-	return (1); /* Return 1 to indicate that one character has been processed */
+        return (1);
 }
