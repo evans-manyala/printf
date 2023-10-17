@@ -7,40 +7,38 @@
 
 int _printf(const char *format, ...)
 {
-FormatSpecifier specifiers[] = {{"s", handle_s}, {"c", handle_c}};
+FormatSpecifier specifiers[] = {{ 's', handle_s },
+{'c', handle_c}, {'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
 
 	int count = 0;
-	int i = 0;
+	size_t i;
 	va_list lst;
 
-	if (!format)
+	if (format == NULL || format[1] == '\0')
 		return (-1);
 	va_start(lst, format);
-	while (format && *(format + i))
+	while (*format)
 	{
-		if (format[i] == '%' && (!format[i + 1] || format[i + 1] == ' '))
-			return (-1);
-		else if (format[i] == '%' && *(format + i + 1) == 'c')
-		{
-			count += specifiers[0].ptr(lst);
-			i++;
-		}
-		else if (format[i] == '%' && *(format + i + 1) == 's')
-		{
-			count += specifiers[1].ptr(lst);
-			i++;
-		}
-		else if (format[i] == '%' && *(format + i + 1) == '%')
-		{
-			count += _putchar('%');
-			i++;
-		}
+		if (*format != '%')  /* Check the Escape sequence */
+			count += _putchar(*format);
 		else
 		{
-			_putchar(format[i]);
-			count++;
+			format++; /* Check what is after % */
+			if (*format != '\0')
+			{
+				char specifier = *format;
+
+				for (i = 0; i < sizeof(specifiers) / sizeof(specifiers[0]); i++)
+				{
+					if (specifiers[i].specifier == specifier)
+					{
+						specifiers[i].handler(lst, &count);
+						break;
+					}
+				}
+			}
 		}
-		i++;
+		format++;
 	}
 	va_end(lst);
 	return (count);
