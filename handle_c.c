@@ -11,7 +11,7 @@ int handle_c(va_list lst, int *count)
 {
 	char c = va_arg(lst, int);
 
-	if (c == NULL)
+	if (c == '\0')
 	{
 		c = ' ';
 	}
