@@ -3,7 +3,7 @@
 /**
  * handle_c - print char
  * @lst: argument
- *
+ * @count: Number of characters
  * Return: 1 if successful
  */
 int handle_c(va_list lst, int *count)
