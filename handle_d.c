@@ -9,21 +9,36 @@
 
 int handle_d(va_list lst, int *count)
 {
-	int i = va_arg(lst, int);
+	int number = va_arg(lst, int);
 
-	if (i < 0)
+	if (number < 0)
 	{
-		i = -i;
 		_putchar('-');
+		number = -number;
+		(*count)++;
 	}
 
-	char *result = converter(i, 10);
-
-	while (*result)
+	if (number == 0)
 	{
-		_putchar(*result);
-		result++;
+		_putchar('0');
 		(*count)++;
+	}
+	else
+	{
+		int reversed = 0;
+
+		while (number > 0)
+		{
+			reversed = reversed * 10 + number % 10;
+			number /= 10;
+		}
+
+		while (reversed > 0)
+		{
+			_putchar(reversed % 10 + '0');
+			reversed /= 10;
+			(*count)++;
+		}
 	}
 	return (1);
 }
