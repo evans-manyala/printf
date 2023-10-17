@@ -11,7 +11,7 @@ int handle_s(va_list lst, int *count)
 	char *str = va_arg(lst, char *);
 
 	if (str == NULL)
-		return (-1);
+		str = "(null)";
 
 	while (*str)
 	{
