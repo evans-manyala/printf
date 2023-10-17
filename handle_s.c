@@ -1,25 +1,23 @@
 #include "main.h"
-
 /**
- * handle_s - print string
- * @lst: argument.
- * Return: i - 1 the number of characters in the string.
+ * handle_s - This function will handle string specifier
+ * @lst: List of arguments
+ * @count: Count value of the number of characters
+ * Return: Success value 1
  */
 
-int handle_s(va_list lst)
+int handle_s(va_list lst, int *count)
 {
-	int i = 0;
-	char *s = va_arg(lst, char *);
+	char *str = va_arg(lst, char *);
 
-	if (!s)
-	{
-		s = "(null)";
-	}
+	if (str == NULL)
+		str = "(null)";
 
-	while (s[i] != '\0')
+	while (*str)
 	{
-		_putchar(s[i]);
-		i++;
+		_putchar(*str);
+		(*count)++; /*Increment the character count*/
+		str++;
 	}
-	return (i);
+	return (1);
 }
