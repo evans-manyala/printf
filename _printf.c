@@ -7,8 +7,8 @@
 
 int _printf(const char *format, ...)
 {
-FormatSpecifier specifiers[] = {{ 's', handle_s },
-{'c', handle_c}, {'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
+	FormatSpecifier specifiers[] = {{'s', handle_s}, {'c', handle_c},
+		{'%', handle_perc}, {'d', handle_d}, {'i', handle_d}};
 
 	int count = 0;
 	size_t i;
@@ -19,11 +19,11 @@ FormatSpecifier specifiers[] = {{ 's', handle_s },
 	va_start(lst, format);
 	while (*format)
 	{
-		if (*format != '%')  /* Check the Escape sequence */
+		if (*format != '%')
 			count += _putchar(*format);
 		else
 		{
-			format++; /* Check what is after % */
+			format++;
 			if (*format != '\0')
 			{
 				char specifier = *format;
