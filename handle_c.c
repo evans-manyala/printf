@@ -6,10 +6,10 @@
  *
  * Return: 1 if successful
  */
-int print_char(va_list lst)
+int handle_c(va_list lst)
 {
-        char c = va_arg(lst, int);
-        _putchar(c);
+	char c = va_arg(lst, int);
 
-        return (1);
+	_putchar(c);
+	return (1);
 }

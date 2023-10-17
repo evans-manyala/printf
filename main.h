@@ -12,9 +12,9 @@
  */
 typedef struct will_handle
 {
-        char *c;
-        int (*ptr)(va_list lst);
-} FormatSpecifier ;
+	char *c;
+	int (*ptr)(va_list lst);
+} FormatSpecifier;
 
 int _printf(const char *format, ...);
 int _putchar(char c);
@@ -22,3 +22,4 @@ int handle_c(va_list lst);
 int handle_s(va_list lst);
 
 #endif /* MAIN_H */
+
