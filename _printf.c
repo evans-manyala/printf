@@ -10,7 +10,8 @@ int _printf(const char *format, ...)
 	FormatSpecifier specifiers[] = {
 		{'s', handle_s},
 		{'c', handle_c},
-		{'%', handle_perc}
+		{'%', handle_perc},
+		{'b', handle_bin}
 };
 
 	int count = 0;
