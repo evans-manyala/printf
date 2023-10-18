@@ -20,7 +20,7 @@ int handle_d(va_list lst, int *count)
 	}
 
 	if (number < 10)
-		*count += _putchar(number + '0'));
+		*count += _putchar(number + '0');
 
 	an = number;
 
