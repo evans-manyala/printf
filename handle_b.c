@@ -2,6 +2,8 @@
 /**
  * handle_b - Function converts the unsigned int
  * argument into binary.
+ * @lst: List of arguments
+ * @count: Count value of the number of characters
  * Return: 1 if successful.
  */
 
