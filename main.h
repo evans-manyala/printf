@@ -27,7 +27,6 @@ int handle_c(va_list lst, int *count);
 int handle_perc(va_list lst, int *count);
 int handle_d(va_list lst, int *count);
 int handle_b(va_list lst, int *count, const char *format);
-void print_decimal_integer(int n, int width, int precision, int *count);
 
 #endif
 
